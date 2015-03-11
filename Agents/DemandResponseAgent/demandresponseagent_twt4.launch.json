@@ -1,0 +1,78 @@
+{
+"agent": {
+        "exec": "DemandResponseagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    },
+    
+#Agent Parameters
+"agentid": "pnnl_afdd2",  #Agent ID used by actuator agent for control of RTU
+
+"campus": "pnnl",		#campus name as known by Volttron
+
+"building": "twt",	#Building name as known by Volttron
+
+"unit": "catalyst2",	#RTU/Controller name as known by Volttron
+
+"smap_path": "datalogger/log/testing/twt/catalyst4" ,  #/datalogger/log/your path here
+
+
+
+#Catalyst Controller point names
+"cooling_stpt":  "CoolingTemperatureStPt", # second value in quotes in name from your controller
+
+"heating_stpt": "HeatingTemperatureStPt",
+
+"min_damper_stpt": "MinimumDamperPositionStPt",
+
+"cooling_stage_diff": "CoolingStageDifferential",
+
+"cooling_fan_sp1": "CoolSupplyFanSpeed1",
+
+"cooling_fan_sp2":  "CoolSupplyFanSpeed2",
+
+"override_command": "VoltronPBStatus",
+
+"occupied_status": "Occupied",
+
+"space_temp": "SpaceTemp",
+
+"volttron_flag": "VoltronFlag",
+
+
+#DR cooling Set Points
+"csp_pre": 65.0,	#Pre-cooling zone temperature set point
+
+"csp_cpp": 80.0,	#CPP event zone temperature set point
+
+
+#Normal set points
+"normal_firststage_fanspeed": 90.0,
+
+"normal_secondstage_fanspeed": 90.0,
+
+"normal_damper_stpt": 5.0,
+
+"normal_coolingstpt": 74.0,
+
+"normal_heatingstpt": 67.0,
+
+
+#DR Parameters
+"fan_reduction": 0.1,  #fractional reduction 10% = 0.1
+
+"cpp_end_hour": 23, # DR default end hour in military units
+
+"cpp_end_minute": 0, #DR default end minute 
+
+"damper_cpp": 0, #minimum damper command during CPP event
+
+"timestep_length": 900,	#number of seconds between CSP modifications in Pre and After event (default 900 sec. = 15 min.)
+
+"max_precool_hours": 5, #maximum pre-cooling window in hours
+
+"building_thermal_constant": 4.0, #Building thermal constant F/hr
+
+"cooling_stage_differential": 1.0,
+
+"Schedule": [1,1,1,1,1,1,1] #[Mon, Tue, Wed, Thu, Fri, Sat, Sun]
+
+}

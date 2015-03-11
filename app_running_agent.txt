@@ -1,0 +1,7 @@
+1TH88308a2224dd.launch.json       disabled        1
+2HUE00178818b4cd.launch.json      disabled   running [12480]
+2WLB4750E0A1110.launch.json       disabled   running [12425]
+3WSP08863B703384.launch.json      disabled   running [12394]
+3WSPEC1A59779F78.launch.json      disabled   running [12377]
+applauncheragent.launch.json      disabled   running [12346]
+devicediscoveryagent.launch.json  disabled   running [12325]

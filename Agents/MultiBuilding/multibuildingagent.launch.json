@@ -1,0 +1,17 @@
+{
+    "agent": {
+        "exec": "multibuildingagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    },
+    "building-publish-address":"tcp://0.0.0.0:9161",
+    "building-subscribe-address":"tcp://0.0.0.0:9160",
+    "public-key":"{wiV]rrDq7gIqgiiwbqG}VywTnA(#rw9FsaYUAA3",
+    "secret-key":"5uN]AQw2asW&Cff*##R:o-O@az<5py+(zVn?H)q#",
+    "cleanup-period": 600,
+    "building/ari":{
+        "pub": "tcp://0.0.0.0:9161",
+        "sub":"tcp://0.0.0.0:9160",
+        "public-key": "{wiV]rrDq7gIqgiiwbqG}VywTnA(#rw9FsaYUAA3",
+        "allow": "pub_or_sub"
+    },
+    "uuid":"f6bd613f-90af-4cea-abad-a7c84b3fab64"
+}

@@ -1,0 +1,19 @@
+{
+    "address": "http://38.68.232.134:80", 
+    "agent": {
+        "exec": "lightingagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    }, 
+    "agent_id": "2HUE00178818b4cd", 
+    "api": "classAPI_PhilipsHue", 
+    "building_name": "bemoss", 
+    "db_database": "bemossdb", 
+    "db_host": "localhost", 
+    "db_password": "admin", 
+    "db_port": "5432", 
+    "db_user": "admin", 
+    "device_monitor_time": 20, 
+    "model": "Philips hue bridge 2012", 
+    "type": "lighting", 
+    "vendor": "Royal Philips Electronics", 
+    "zone_id": 999
+}

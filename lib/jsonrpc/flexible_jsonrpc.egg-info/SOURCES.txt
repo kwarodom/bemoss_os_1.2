@@ -1,0 +1,8 @@
+setup.py
+flexible_jsonrpc.egg-info/PKG-INFO
+flexible_jsonrpc.egg-info/SOURCES.txt
+flexible_jsonrpc.egg-info/dependency_links.txt
+flexible_jsonrpc.egg-info/top_level.txt
+flexjsonrpc/__init__.py
+flexjsonrpc/core.py
+flexjsonrpc/green.py

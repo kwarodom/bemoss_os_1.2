@@ -1,0 +1,14 @@
+numpy/fft/fftpack_lite.so
+numpy/core/multiarray.so
+numpy/core/struct_ufunc_test.so
+numpy/core/scalarmath.so
+numpy/core/umath.so
+numpy/core/operand_flag_tests.so
+numpy/core/test_rational.so
+numpy/core/_dummy.so
+numpy/core/umath_tests.so
+numpy/core/multiarray_tests.so
+numpy/random/mtrand.so
+numpy/linalg/lapack_lite.so
+numpy/linalg/_umath_linalg.so
+numpy/lib/_compiled_base.so

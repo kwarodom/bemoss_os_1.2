@@ -1,0 +1,9 @@
+setup.py
+devicediscovery/__init__.py
+devicediscovery/agent.py
+devicediscoveryagent.egg-info/PKG-INFO
+devicediscoveryagent.egg-info/SOURCES.txt
+devicediscoveryagent.egg-info/dependency_links.txt
+devicediscoveryagent.egg-info/entry_points.txt
+devicediscoveryagent.egg-info/requires.txt
+devicediscoveryagent.egg-info/top_level.txt

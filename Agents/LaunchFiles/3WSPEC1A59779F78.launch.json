@@ -1,0 +1,19 @@
+{
+    "address": "http://38.68.239.71:49153", 
+    "agent": {
+        "exec": "plugloadagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    }, 
+    "agent_id": "3WSPEC1A59779F78", 
+    "api": "classAPI_WeMo", 
+    "building_name": "bemoss", 
+    "db_database": "bemossdb", 
+    "db_host": "localhost", 
+    "db_password": "admin", 
+    "db_port": "5432", 
+    "db_user": "admin", 
+    "device_monitor_time": 20, 
+    "model": "Socket", 
+    "type": "plugload", 
+    "vendor": "Belkin International Inc.", 
+    "zone_id": 999
+}

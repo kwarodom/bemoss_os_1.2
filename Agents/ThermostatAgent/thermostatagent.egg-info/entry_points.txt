@@ -1,0 +1,3 @@
+[setuptools.installation]
+eggsecutable = thermostat.agent:main
+

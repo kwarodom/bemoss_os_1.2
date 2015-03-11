@@ -1,0 +1,3 @@
+twisted/runner/portmap.so
+twisted/test/raiser.so
+twisted/python/sendmsg.so

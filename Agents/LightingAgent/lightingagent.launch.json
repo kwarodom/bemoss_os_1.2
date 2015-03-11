@@ -1,0 +1,20 @@
+{
+    "agent": {
+        "exec": "lightingagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    },
+    "agent_id": "Lighting1",
+    "building_name": "bemoss",
+    "zone_id": 999,
+    "device_monitor_time": 15,
+    "poll_time": 20,
+    "model": "Philips Hue",
+    "type": "lighting",
+    "api": "classAPI_PhilipsHue",
+    "address": "http://38.68.232.161/api/newdeveloper/groups/0/",
+    "topic": "datalogger/log/building1/zone1/lightingload/PhilipsHue",
+    "db_host": "localhost",
+    "db_port": "5432",
+    "db_database": "bemossdb",
+    "db_user": "admin",
+    "db_password": "admin"
+}

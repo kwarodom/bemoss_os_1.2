@@ -1,0 +1,33 @@
+-- -*- sql -*-
+
+DROP FUNCTION IF EXISTS add_stream(INT, VARCHAR(64));
+CREATE FUNCTION add_stream(subscription INT, uid VARCHAR(64)) RETURNS INT AS
+$$
+DECLARE
+    existing_id INT;
+    existing_sub INT;
+BEGIN
+    -- if the stream is already in there, avoid burning a sequence number.
+    SELECT id, subscription_id INTO existing_id, existing_sub
+    FROM stream 
+    WHERE uuid = uid;
+    IF existing_id IS NOT NULL THEN
+       -- don't allow duplicate uuids with different keys.
+       IF existing_sub = subscription THEN
+          RETURN existing_id;
+       ELSE
+          RAISE EXCEPTION 'UUID already claimed by different API key: %', uid;
+       END IF;
+    ELSE
+        INSERT INTO stream(subscription_id, uuid) VALUES (subscription, uid);
+        RETURN CURRVAL('stream_id_seq');
+    END IF;
+END;
+$$
+LANGUAGE plpgsql;
+
+-- DELETE FROM stream;
+-- DELETE FROM subscription;
+-- INSERT INTO subscription (id, uuid, url, resource, key) VALUES (1, '1231', 'http://', '/+', 'mykey');
+-- SELECT add_stream(1, '231321'), add_stream(1, '213'), add_stream(1, 'as123');
+-- SELECT add_stream(1, '231321'), add_stream(1, '213'), add_stream(1, 'as123');

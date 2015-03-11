@@ -1,0 +1,42 @@
+#!/usr/bin/python2.7
+
+import sys
+sys.path[0:0] = [
+  '/home/kwarodom/workspace/bemoss_os/eggs/pylint-1.4.1-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os',
+  '/home/kwarodom/workspace/bemoss_os/eggs/colormath-2.1.0-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/pip-6.0.7-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/psycopg2-2.5.4-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/zope.interface-4.1.2-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/Twisted-15.0.0-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/Smap-2.0.24c780d-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/simplejson-3.6.5-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/setuptools-12.0.5-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/requests-2.5.1-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/pyzmq-14.5.0-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/python_dateutil-2.4.0-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/pyOpenSSL-0.14-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/pymodbus-1.2.0-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/lib/clock',
+  '/home/kwarodom/workspace/bemoss_os/eggs/numpy-1.9.1-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/lib/jsonrpc',
+  '/home/kwarodom/workspace/bemoss_os/eggs/gevent-1.0.1-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/configobj-5.0.6-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/BACpypes-0.10.6-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/avro-1.7.7-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/six-1.9.0-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/astroid-1.3.4-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/logilab_common-0.63.2-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/cryptography-0.7.2-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/pyserial-2.7-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/greenlet-0.4.5-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/enum34-1.0.4-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/pyasn1-0.1.7-py2.7.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/cffi-0.8.6-py2.7-linux-x86_64.egg',
+  '/home/kwarodom/workspace/bemoss_os/eggs/pycparser-2.10-py2.7.egg',
+  ]
+
+import pylint
+
+if __name__ == '__main__':
+    sys.exit(pylint.run_symilar())

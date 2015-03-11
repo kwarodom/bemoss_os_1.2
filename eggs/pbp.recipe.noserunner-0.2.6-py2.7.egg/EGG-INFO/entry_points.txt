@@ -1,0 +1,3 @@
+[zc.buildout]
+default = pbp.recipe.noserunner:Recipe
+

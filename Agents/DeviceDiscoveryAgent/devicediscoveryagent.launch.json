@@ -1,0 +1,8 @@
+{
+    "agent": {
+        "exec": "devicediscoveryagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    },
+    "agent_id": "DeviceDiscoveryAgent1",
+    "device_scan_time":10,
+    "device_scan_time_multiplier":2
+}

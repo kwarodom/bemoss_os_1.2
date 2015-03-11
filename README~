@@ -1,0 +1,35 @@
+This is a repository for **Building Energy Management Open Source Software (BEMOSS)**, which is an open source operating system that is engineered to improve sensing and control of equipment in small- and medium-sized commercial buildings. 
+
+BEMOSS offers the following key features: 
+
+**Open source, open architecture** – BEMOSS is an open source operating system that is built upon VOLTTRON – a distributed agent platform developed by Pacific Northwest National Laboratory (PNNL). BEMOSS is designed to make it easy for hardware manufacturers to seamlessly interface their devices with BEMOSS. It is also designed to allow software developers to easily contribute to the platform by adding additional BEMOSS functionalities and applications.
+
+**Plug & play** – BEMOSS is designed to automatically discover supported load controllers (including smart thermostats, VAV/RTUs, lighting load controllers and plug load controllers) in commercial buildings. 
+
+**Interoperability** – BEMOSS is designed to work with load control devices form different manufacturers that operate on different communication technologies and data exchange protocols. 
+
+**Cost effectiveness** – Implementation of BEMOSS is deemed to be cost-effective as it is built upon a robust open source platform that can operate on a low-cost single-board computer, such as BeagleBone. 
+
+**Scalability and ease of deployment** – The BEMOSS operating system is designed with a multi-layer architecture. This makes it possible for a building engineer to deploy BEMOSS in one zone of a building, be comfortable with its operation, and later on expand the deployment to the entire building to make it more energy efficient.
+
+**Ability to provide local and remote monitoring** – BEMOSS provides both local and remote monitoring ability with role-based access control. 
+
+**Security** – In addition to built-in security features provided by VOLTTRON (including agent authorization & authentication, encrypted multi-layer communication and agent validation), BEMOSS operating system has provided enhanced security features. 
+ 
+**Support from the Advisory Committee** – BEMOSS system architecture has been developed in consultation with an advisory committee from the beginning of the project.  As of September 2014, BEMOSS advisory committee comprises of 24 representatives from government and industry. 
+
+# Copyright © 2014 by Virginia Polytechnic Institute and State University  
+# All rights reserved
+
+Virginia Polytechnic Institute and State University (Virginia Tech) owns the copyright for the BEMOSS software and its associated documentation (“Software”) and retains rights to grant research rights under patents related to the BEMOSS software to other academic institutions or non-profit research institutions.  You should carefully read the following terms and conditions before using this software.  Your use of this Software indicates your acceptance of this license agreement and all terms and conditions.
+
+You are hereby licensed to use the Software for Non-Commercial Purpose only.  Non-Commercial Purpose means the use of the Software solely for research.  Non-Commercial Purpose excludes, without limitation, any use of the Software, as part of, or in any way in connection with a product or service which is sold, offered for sale, licensed, leased, loaned, or rented.  Permission to use, copy, modify, and distribute this compilation for Non-Commercial Purpose to other academic institutions or non-profit research institutions is hereby granted without fee, subject to the following terms of this license.
+
+Commercial Use If you desire to use the software for profit-making or commercial purposes, you agree to negotiate in good faith a license with Virginia Tech prior to such profit-making or commercial use. Virginia Tech shall have no obligation to grant such license to you, and may grant exclusive or non-exclusive licenses to others. You may contact the following by email to discuss commercial use: vtippatents@vtip.org
+
+Limitation of Liability IN NO EVENT WILL VIRGINIA TECH, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF VIRGINIA TECH OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+For full terms and conditions, please visit https://bitbucket.org/bemoss/bemoss_os. 
+
+Address all correspondence regarding this license to Virginia Tech’s electronic mail address: vtippatents@vtip.org
+

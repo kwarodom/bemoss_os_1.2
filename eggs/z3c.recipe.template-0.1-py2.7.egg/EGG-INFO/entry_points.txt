@@ -1,0 +1,4 @@
+
+      [zc.buildout]
+      default = z3c.recipe.template:Recipe
+      

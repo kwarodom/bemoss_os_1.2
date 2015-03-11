@@ -1,0 +1,15 @@
+twisted >= 12.2.0
+pyserial >= 2.6
+
+[documents]
+sphinx >= 1.1.3
+
+[quality]
+coverage >= 3.5.3
+nose >= 1.2.1
+mock >= 1.0.0
+pep8 >= 1.3.3
+
+[twisted]
+pyasn1 >= 0.1.4
+pycrypto >= 2.6

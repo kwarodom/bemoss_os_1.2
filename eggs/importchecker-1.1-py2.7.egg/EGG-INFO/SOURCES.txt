@@ -1,0 +1,16 @@
+CHANGES.txt
+CREDITS.txt
+LICENSE.txt
+README.txt
+buildout.cfg
+setup.cfg
+setup.py
+src/importchecker/__init__.py
+src/importchecker/importchecker.py
+src/importchecker.egg-info/PKG-INFO
+src/importchecker.egg-info/SOURCES.txt
+src/importchecker.egg-info/dependency_links.txt
+src/importchecker.egg-info/entry_points.txt
+src/importchecker.egg-info/not-zip-safe
+src/importchecker.egg-info/requires.txt
+src/importchecker.egg-info/top_level.txt

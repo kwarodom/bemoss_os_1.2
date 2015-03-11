@@ -1,0 +1,11 @@
+#!/bin/sh
+cd ~
+cd workspace/bemoss_os
+sudo rm Agents/networkagent-0.1-py2.7.egg
+sudo rm bin/networkagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh NetworkAgent 
+sudo bin/volttron-ctrl install-executable Agents/networkagent-0.1-py2.7.egg  
+sudo bin/volttron-ctrl load-agent Agents/NetworkAgent/networkagent.launch.json 
+sudo bin/volttron-ctrl start-agent networkagent.launch.json  
+sudo bin/volttron-ctrl list-agent
+sudo tail volttron.log  

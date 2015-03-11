@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: Smap
+Version: 2.0.24c780d
+Summary: sMAP standard library and drivers
+Home-page: http://code.google.com/p/smap-data
+Author: Stephen Dawson-Haggerty
+Author-email: stevedh@eecs.berkeley.edu
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: avro
+Requires: dateutil
+Requires: twisted
+Requires: ordereddict
+Requires: ply
+Requires: psycopg2
+Requires: numpy
+Requires: scipy
+Requires: simplejson

@@ -1,0 +1,3 @@
+logilab-common >= 0.53.0
+astroid >= 1.3.3
+six

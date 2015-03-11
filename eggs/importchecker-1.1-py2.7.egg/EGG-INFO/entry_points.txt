@@ -1,0 +1,3 @@
+[console_scripts]
+importchecker = importchecker.importchecker:main
+

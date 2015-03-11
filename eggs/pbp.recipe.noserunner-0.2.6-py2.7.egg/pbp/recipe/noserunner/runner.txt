@@ -1,0 +1,118 @@
+Example usage
+=============
+
+    >>> from zc.buildout.testing import *
+    >>> from pbp.recipe.noserunner import *
+    >>> write('buildout.cfg',
+    ... """
+    ... [buildout]
+    ... parts = test
+    ... index = http://download.zope.org/simple
+    ...
+    ... [test]
+    ... recipe = pbp.recipe.noserunner
+    ... eggs = pbp.recipe.noserunner
+    ... working-directory = ${buildout:directory}
+    ... """) 
+
+Running the buildout::
+
+    >>> null = system(buildout) 
+
+Checking the generated script::
+
+    >>> import os
+    >>> print open(os.path.join(sample_buildout, 'bin', 'test')).read()    
+    #!...
+    <BLANKLINE>
+    import sys
+    sys.path[0:0] = [
+      ...
+      ]
+    <BLANKLINE>
+    import os
+    <BLANKLINE>
+    sys.argv[0] = os.path.abspath(sys.argv[0])
+    os.chdir('/sample-buildout')
+    <BLANKLINE>
+    <BLANKLINE>
+    import nose
+    <BLANKLINE>
+    if __name__ == '__main__':
+        nose.main(argv=sys.argv[1:])
+    <BLANKLINE>
+
+No working dir::
+
+    >>> write('buildout.cfg',
+    ... """
+    ... [buildout]
+    ... parts = test
+    ... index = http://download.zope.org/simple
+    ...
+    ... [test]
+    ... recipe = pbp.recipe.noserunner
+    ... eggs = pbp.recipe.noserunner
+    ... """) 
+
+Running the buildout::
+
+    >>> null = system(buildout) 
+
+Checking the generated script::
+
+    >>> import os
+    >>> print open(os.path.join(sample_buildout, 'bin', 'test')).read()
+    #!...
+    <BLANKLINE>
+    import sys
+    sys.path[0:0] = [
+      ...
+      ]
+    <BLANKLINE>
+    <BLANKLINE>
+    import nose
+    <BLANKLINE>
+    if __name__ == '__main__':
+        nose.main(argv=sys.argv[1:])
+    <BLANKLINE>
+
+Let's try to set an environment:
+
+    >>> write('buildout.cfg',
+    ... """
+    ... [buildout]
+    ... parts = test
+    ... index = http://download.zope.org/simple
+    ...
+    ... [test]
+    ... recipe = pbp.recipe.noserunner
+    ... eggs = pbp.recipe.noserunner
+    ... environment = django-environment
+    ...
+    ... [django-environment]
+    ... DJANGO_SETTINGS_MODULE=settings 
+    ... """) 
+
+Running the buildout, make sure the script is OK.::
+
+    >>> null = system(buildout) 
+    >>> print open(os.path.join(sample_buildout, 'bin', 'test')).read()
+    #!...
+    <BLANKLINE>
+    import sys
+    sys.path[0:0] = [
+      ...
+      ]
+    <BLANKLINE>
+    import os
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+    <BLANKLINE>
+    <BLANKLINE>
+    import nose
+    <BLANKLINE>
+    if __name__ == '__main__':
+        nose.main(argv=sys.argv[1:])
+    <BLANKLINE>
+
+

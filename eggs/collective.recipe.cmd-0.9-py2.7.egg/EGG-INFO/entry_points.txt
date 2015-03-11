@@ -1,0 +1,9 @@
+[zc.buildout]
+default = collective.recipe.cmd:Cmd
+py = collective.recipe.cmd:Python
+sh = collective.recipe.cmd:Cmd
+
+[zc.buildout.uninstall]
+default = collective.recipe.cmd:uninstallCmd
+sh = collective.recipe.cmd:uninstallCmd
+

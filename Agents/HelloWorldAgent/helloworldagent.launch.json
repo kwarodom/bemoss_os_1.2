@@ -1,0 +1,8 @@
+{
+    "agent": {
+        "exec": "helloworldagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    },
+    "local_name": "helloworldagent1",
+	"platform_name": "bemoss_core",
+	"addresses": "http://bemoss_core:7778/acc"
+}

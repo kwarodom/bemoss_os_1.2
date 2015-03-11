@@ -1,0 +1,18 @@
+{
+    "agent": {
+        "exec": "plugloadagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    },
+    "agent_id": "WiFiSmartplug1",
+    "device_monitor_time": 15,
+    "poll_time": 20,
+    "model": "Wemo",
+    "type": "plugload",
+    "api": "classAPI_WeMo",
+    "address": "http://38.68.232.156:49153",
+    "topic": "datalogger/log/building1/zone1/plugload/WeMo",
+    "db_host": "localhost",
+    "db_port": "5432",
+    "db_database": "bemossdb",
+    "db_user": "admin",
+    "db_password": "admin"
+}

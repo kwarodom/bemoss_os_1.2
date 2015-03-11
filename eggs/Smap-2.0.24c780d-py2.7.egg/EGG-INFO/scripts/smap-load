@@ -1,0 +1,122 @@
+#!/usr/bin/python2.7
+# -*- python -*-
+"""
+Copyright (c) 2011, 2012, Regents of the University of California
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions 
+are met:
+
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ - Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the
+   distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGE.
+"""
+"""
+@author Stephen Dawson-Haggerty <stevedh@eecs.berkeley.edu>
+"""
+
+import sys
+import time, datetime
+from optparse import OptionParser
+
+from twisted.internet import reactor, defer, threads
+from twisted.python import log
+
+from smap import loader, util
+from smap.contrib import dtutil
+
+def get_parser():
+    usage = 'usage: %prog [options] conf-file <paths ...>'
+    parser = OptionParser(usage=usage)
+    parser.add_option('-t', '--timefmt', dest='timefmt', default='%m-%d-%Y',
+                      type='str', 
+                      help='time format string for start and end ("%m-%d-%Y")')
+    parser.add_option('-s', '--start-time', dest='start_time', 
+                      default="now_minus_1hour", type='str',
+                      help='start time of import')
+    parser.add_option('-e', '--end-time', dest='end_time',
+                      default="now", type='str',
+                      help='end time of import')
+    parser.add_option('-z', '--timezone', dest='timezone',
+                      default='Local', type='str',
+                      help='time zone for time conversion')
+    parser.add_option('-r', '--reset', dest='reset',
+                      default=False, action='store_true',
+                      help='reset drivers before running')
+    parser.add_option('-n', '--no-cache', dest='cache',
+                      default=True, action='store_false',
+                      help='don\'t cache downloaded data')
+    return parser
+
+
+if __name__ == '__main__':
+    p = get_parser()
+    opts, args = p.parse_args()
+    if len(args) < 1:
+        p.error("conf file is a required argument")
+
+    log.startLogging(sys.stdout)
+    sections = map(util.norm_path, args[1:])
+    inst = loader.load(args[0], sections=sections)
+
+    for dpath, driver in inst.drivers.iteritems():
+        if len(sections) > 1 and not dpath in sections:
+            continue
+
+        if not hasattr(driver, "load"):
+            log.err('Error: driver does not have "load" method')
+            sys.exit(1)
+
+        if hasattr(driver, 'reset') and \
+                callable(driver.reset) and \
+                opts.reset:
+            log.msg("Resetting driver")
+            driver.reset()
+
+    try: 
+        # find the date range for loading...
+        st, et = None, None
+        now = dtutil.now(tzstr=opts.timezone)
+        if (opts.start_time=="now_minus_1hour"):
+            st = now - datetime.timedelta(hours=1)
+        else:
+            st = dtutil.strptime_tz(opts.start_time, opts.timefmt, opts.timezone)
+
+        if (opts.end_time=="now"):
+            et = now
+        else:
+            et = dtutil.strptime_tz(opts.end_time, opts.timefmt, opts.timezone)
+    except:
+        pass
+
+    dl = []
+    for dpath, driver in inst.drivers.iteritems():
+        if len(sections) > 1 and not dpath in sections:
+            continue
+        # try: 
+        #     loader = driver.load(st, et, cache=opts.cache)
+        # except TypeError:
+        dl.append(defer.maybeDeferred(driver.load, st, et, cache=opts.cache))
+
+    dl = defer.DeferredList(dl, consumeErrors=True)
+    dl.addCallback(lambda x: inst._flush())
+    dl.addCallbacks(lambda x: reactor.callFromThread(reactor.stop))
+
+    reactor.run()

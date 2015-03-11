@@ -1,0 +1,132 @@
+Metadata-Version: 1.1
+Name: pbp.recipe.noserunner
+Version: 0.2.6
+Summary: Expert Python Programming - ZC Buildout runner for nose
+Home-page: http://atomisator.ziade.org
+Author: Tarek Ziade
+Author-email: tarek@ziade.org
+License: ZPL
+Description: This package is part of the `Expert Python Programming` book  written by
+        Tarek Ziadé.
+        
+        
+        For more information, go to http://atomisator.ziade.org
+        
+        .. contents::
+        
+        QuickStart
+        **********
+        
+        `pbp.recipe.noserunner` will let you create a `Nose` test runner script in 
+        your buildout. Here's an example of the simplest configuration::
+        
+            [buildout]
+            parts = test
+        
+            [test]
+            recipe = pbp.recipe.noserunner
+        
+        If you run the builout, a `test` script will be created in the bin directory to
+        run your tests using Nose.
+        
+        Links: 
+        
+        - Nose project : http://somethingaboutorange.com/mrl/projects/nose
+        - zc.buildout : http://pypi.python.org/pypi/zc.buildout
+        
+        
+        Detailed Documentation
+        **********************
+        
+        Supported options
+        =================
+        
+        The recipe supports the following options:
+        
+        eggs
+            The eggs option specified a list of eggs to test given as one ore
+            more setuptools requirement strings.  Each string must be given on
+            a separate line.
+        
+        script
+            The script option gives the name of the script to generate, in the
+            buildout bin directory.  Of the option isn't used, the part name
+            will be used.
+        
+        extra-paths
+            One or more extra paths to include in the generated test script.
+        
+        defaults
+            The defaults option lets you specify testrunner default
+            options. These are specified as Python source for an expression
+            yielding a list, typically a list literal.
+        
+        working-directory
+            The working-directory option lets to specify a directory where the
+            tests will run. The testrunner will change to this directory when
+            run. If the working directory is the empty string or not specified
+            at all, the recipe will not change the current working directory.
+        
+        environment
+            A set of environment variables that should be exported before
+            starting the tests.
+        
+        
+        Contributors
+        ************
+        
+        Tarek Ziade, Author
+        
+        
+        Change history
+        **************
+        
+        0.2.6 (2009-05-13)
+        =================
+        
+        - Fixed argument passing [tarek]
+        
+        0.2.5 (2009-05-08)
+        ==================
+        
+        - Fixed the environment settings. Thanks to Rob Madole [tarek]
+        - Now you can pass arguments to Nose. Thanks to Kumar McMillan [tarek]
+        
+        0.2.4 (2008-09-02)
+        ==================
+        
+        - Don't create/delete working directory [Tarek]
+        
+        0.2.3 (2008-08-20)
+        ==================
+        
+        - Fixed change directory [Tarek Ziade]
+        - Fixed defaults argument [Tarek Ziade]
+        
+        0.1.1 (2008-06-21)
+        ==================
+        
+         - Fixed MANIFEST.in again
+           [Tarek Ziade].
+        
+        
+        0.1.1 (2008-06-20)
+        ==================
+        
+         - Fixed MANIFEST.in thx to Mario Morgado
+           [Tarek Ziade].
+        
+        0.1.0 (2008-06-20)
+        ==================
+        
+         - Created recipe with ZopeSkel [Tarek Ziade].
+        
+        Download
+        ********
+        
+Platform: UNKNOWN
+Classifier: Framework :: Buildout
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: Zope Public License

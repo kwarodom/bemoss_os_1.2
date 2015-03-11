@@ -1,0 +1,4 @@
+gevent/core.so
+gevent/_util.so
+gevent/_semaphore.so
+gevent/ares.so

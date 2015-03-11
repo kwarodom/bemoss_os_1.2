@@ -1,0 +1,3 @@
+[setuptools.installation]
+eggsecutable = lighting_scheduler.agent:main
+

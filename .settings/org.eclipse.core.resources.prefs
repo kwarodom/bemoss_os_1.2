@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//Agents/ListenerAgent/listener/agent.py=utf-8
+encoding//Agents/WeatherAgent/weather/weatheragent.py=utf-8
+encoding//volttron/lite/agent/base.py=utf-8
+encoding//volttron/lite/agent/matching.py=utf-8
+encoding//volttron/lite/agent/utils.py=utf-8
+encoding/setup.py=utf-8

@@ -1,0 +1,62 @@
+#!/bin/sh
+#__author__ = "Warodom Khamphanchai","Avijit Saha"
+#__copyright__ = "Copyright 2014, BEMOSS"
+#__created__ = "2014-09-12 12:04:50"
+sudo chmod 777 -R ~/.config/volttron/
+sudo rm ~/.config/volttron/lite/agents/*
+sudo chmod 777 -R ~/workspace
+cd ~/workspace/bemoss_os/
+sudo bin/volttron-lite -c dev-config.ini -v -v &
+cd ~/workspace/bemoss_os
+sudo rm Agents/devicediscoveryagent-0.1-py2.7.egg
+sudo rm bin/devicediscoveryagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh DeviceDiscoveryAgent
+sudo bin/volttron-ctrl install-executable Agents/devicediscoveryagent-0.1-py2.7.egg
+sudo rm Agents/thermostatagent-0.1-py2.7.egg
+sudo rm bin/thermostatagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh ThermostatAgent
+sudo bin/volttron-ctrl install-executable Agents/thermostatagent-0.1-py2.7.egg
+sudo rm Agents/plugloadagent-0.1-py2.7.egg
+sudo rm bin/plugloadagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh PlugloadAgent
+sudo bin/volttron-ctrl install-executable Agents/plugloadagent-0.1-py2.7.egg
+sudo rm Agents/lightingagent-0.1-py2.7.egg
+sudo rm bin/lightingagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh LightingAgent
+sudo bin/volttron-ctrl install-executable Agents/lightingagent-0.1-py2.7.egg
+sudo rm Agents/occupancysensoragent-0.1-py2.7.egg
+sudo rm bin/occupancysensoragent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh OccupancySensorAgent
+sudo bin/volttron-ctrl install-executable Agents/occupancysensoragent-0.1-py2.7.egg
+sudo rm Agents/ambientlightsensoragent-0.1-py2.7.egg
+sudo rm bin/ambientlightsensoragent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh AmbientLightSensorAgent
+sudo bin/volttron-ctrl install-executable Agents/ambientlightsensoragent-0.1-py2.7.egg
+sudo rm Agents/vavagent-0.1-py2.7.egg
+sudo rm bin/vavagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh VAVAgent
+sudo bin/volttron-ctrl install-executable Agents/vavagent-0.1-py2.7.egg
+sudo rm Agents/rtuagent-0.1-py2.7.egg
+sudo rm bin/rtuagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh RTUAgent
+sudo bin/volttron-ctrl install-executable Agents/rtuagent-0.1-py2.7.egg
+sudo rm Agents/powermeteragent-0.1-py2.7.egg
+sudo rm bin/powermeteragent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh PowerMeterAgent
+sudo bin/volttron-ctrl install-executable Agents/powermeteragent-0.1-py2.7.egg
+sudo rm Agents/motionsensoragent-0.1-py2.7.egg
+sudo rm bin/motionsensoragent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh MotionSensorAgent
+sudo bin/volttron-ctrl install-executable Agents/motionsensoragent-0.1-py2.7.egg
+sudo rm Agents/multisensoragent-0.1-py2.7.egg
+sudo rm bin/multisensoragent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh MultiSensorAgent
+sudo bin/volttron-ctrl install-executable Agents/multisensoragent-0.1-py2.7.egg
+sudo rm Agents/multibuildingagent-0.1-py2.7.egg
+sudo rm bin/multibuildingagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh MultiBuilding
+sudo bin/volttron-ctrl install-executable Agents/multibuildingagent-0.1-py2.7.egg
+sudo rm Agents/networkagent-0.1-py2.7.egg
+sudo rm bin/networkagent-0.1-py2.7.egg
+sudo volttron/scripts/build-agent.sh NetworkAgent
+sudo bin/volttron-ctrl install-executable Agents/networkagent-0.1-py2.7.egg

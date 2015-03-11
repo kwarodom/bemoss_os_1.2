@@ -1,0 +1,13 @@
+[report 0]
+ReportDeliveryLocation = http://localhost:8079/add/odVnFfHj2o6ntB0b5kdfZeekjE48Wz1vFiPS
+
+[/datalogger]
+type = volttron.drivers.data_logger.DataLogger 
+
+[/]
+type = Collection
+Metadata/SourceName = BEMOSS data
+uuid = 4a1ed488-a498-11e1-91af-00708dca5a06 
+
+[server]
+Port = 8080

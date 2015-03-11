@@ -1,0 +1,57 @@
+This file gives some very basic examples of how to work with
+Mercurial.
+
+* To get more help
+  Most commands issued like `hg CMD` have help which can be displayed
+  by `hg help init`. Obviously the information in this file is a vast
+  simplifiation of Mercurial - it only lists a subset of
+  functionality as well as a subset of functionality for each tool.
+  This file is no substitute for actually knowing what you are doing.
+
+  One tutorial is at: http://hginit.com/
+
+* GUIs to Mercurial
+  There are lots of them; use them if you like.  I don't, so I can't
+  recommend any.
+
+* Clone the repository from bitbucket
+  `hg clone ssh://hg@bitbucket.org/berkeleylab/rtunetwork` 
+      This (presumably) doesn't require a password but needs public
+      keys uploaded to bitbucket.
+
+  `hg clone https://USERNAME@bitbucket.org/berkeleylab/rtunetwork`
+      Authenticates using username/password.
+
+* Pull changes from the bitbucket repository into the local repository
+  `hg pull`
+  This will grab all changes from the default path, which by default
+  is the bitbucket repository.  Takes an argument for a source as desired.
+
+* Push changes from the local repository to the bitbucket repository
+  `hg push`
+  Pushes all changes to the default path.
+
+* Check status 
+  Meaning to see the difference between the current directory state
+  and the state of the directory at the last commit.  
+
+  `hg status`
+
+  If a file doesn't show up, it is tracked but unmodified.
+  M = File is tracked and modified, changes yet to be committed.
+  ? = File is not tracked by the Repository.
+
+* See history
+  `hg log`
+
+  This will display revision history for the entire repository.
+
+* Add a file to the repository
+  Mercurial will not track a file unless you explicitly add it to the
+  repository.
+
+  `hg add FILENAME`
+
+
+
+  

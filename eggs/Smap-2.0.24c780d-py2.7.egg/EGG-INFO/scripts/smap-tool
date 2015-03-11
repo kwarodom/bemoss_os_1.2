@@ -1,0 +1,119 @@
+#!/usr/bin/python2.7
+# -*- python -*-
+"""
+Copyright (c) 2011, 2012, Regents of the University of California
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions 
+are met:
+
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ - Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the
+   distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGE.
+"""
+"""
+@author Stephen Dawson-Haggerty <stevedh@eecs.berkeley.edu>
+"""
+import sys
+import json
+import urllib2
+import uuid
+
+from optparse import OptionParser
+from smap.contrib import dtutil
+
+def load_json(url):
+    fp = urllib2.urlopen(url)
+    try:
+        data = json.load(fp)
+    finally:
+        fp.close()
+    return data
+
+def test_liveness(smap_url, opts):
+    data = load_json(smap_url + '/data/+')
+    readings = [(k, 
+                 v['uuid'], 
+                 v['Readings'][-1] if len(v['Readings']) else [0, None],
+                 v['Properties'])
+                for k, v in data.iteritems() if 'uuid' in v]
+    readings.sort(key=lambda v: v[2][0], reverse=True)
+    for path, uid, latest, props in readings:
+        print dtutil.iso8601(dtutil.ts2dt(latest[0] / 1000.), 
+                             tzinfo=dtutil.gettz(props['Timezone'])), 
+        if opts.uuids: print uid,
+        print path,
+        print "%s%s" % (latest[1], props['UnitofMeasure'])
+
+def display_reports(smap_url, opts):
+    data = load_json(smap_url + '/reports')
+    for u in sorted(data['Contents']):
+        report = load_json(smap_url + '/reports/' + u)
+        print "Report name...", u
+        print " ReportResource:", report['ReportResource']
+        print " ReportDeliveryLocation: " + ('\n' + ' ' * 25).join(report['ReportDeliveryLocation'])
+        print
+
+def install_report(smap_url, opts):
+    report = {
+        'uuid': str(uuid.uuid1()),
+        'ReportResource': '/+',
+        'ReportDeliveryLocation': [opts.destination]
+        }
+    fp = urllib2.urlopen(smap_url + '/reports', json.dumps(report))
+    print report['uuid']
+    fp.close()
+
+def delete_report(smap_url, opts):
+    opener = urllib2.build_opener(urllib2.HTTPHandler)
+    request = urllib2.Request(smap_url + '/reports/' + opts.report_name)
+    request.get_method = lambda: 'DELETE'
+    fp = opener.open(request)
+    fp.close()
+
+if __name__ == '__main__':
+    usage = 'usage: %prog [options] url'
+    parser = OptionParser(usage=usage)
+    parser.add_option('-l', '--liveness', dest='liveness',
+                      default=False, action='store_true',
+                      help="Test sMAP source for for liveness")
+    parser.add_option('-u', '--uuids', dest='uuids',
+                      default=False, action='store_true',
+                      help="Print uuids instead of paths")
+    parser.add_option('-r', '--reports', dest='reports',
+                      default=False, action='store_true',
+                      help="Display report destinations for the source")
+    parser.add_option('-c', '--create-report', dest='destination',
+                      default=None,
+                      help="Start sending data to a new destination URL")
+    parser.add_option('-d', '--delete-report', dest='report_name',
+                      default=None,
+                      help="Remove a report (by name)")
+    
+    opts, args = parser.parse_args()
+    if not len(args):
+        parser.print_help()
+        sys.exit(1)
+
+    for source_url in args:
+        if opts.liveness: test_liveness(source_url, opts)
+        if opts.destination: install_report(source_url, opts)
+        if opts.report_name: delete_report(source_url, opts)
+        if opts.reports: display_reports(source_url, opts)

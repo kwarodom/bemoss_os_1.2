@@ -1,0 +1,214 @@
+#!/usr/bin/python2.7
+# -*- python -*-
+"""
+Copyright (c) 2011, 2012, Regents of the University of California
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions 
+are met:
+
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ - Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the
+   distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGE.
+"""
+"""
+@author Stephen Dawson-Haggerty <stevedh@eecs.berkeley.edu>
+"""
+
+import os
+import sys
+import re
+import readline
+import atexit
+import time
+import urllib, urllib2
+import json
+import operator
+import subprocess
+from optparse import OptionParser
+from smap import util
+from smap.archiver import settings, client
+
+HISTFILE = os.path.expanduser('~/.smap-query-history')
+
+def stringify_times(obj):
+    if not isinstance(obj, list): return
+    for v in obj:
+        if not isinstance(v, dict): continue
+        if 'Readings' in v and isinstance(v['Readings'], list):
+            for i in xrange(0, len(v['Readings'])):
+                try:
+                    v['Readings'][i][0] = time.ctime(v['Readings'][i][0] / 1000)
+                except ValueError:
+                    pass
+
+def run_query(opts, q):
+    try:
+        query = {}
+        if opts.key:
+            query['key'] = opts.key.split(',')
+            if opts.private:
+                query['private'] = ['']
+
+        qurl = opts.url + '?' + urllib.urlencode(query, doseq=True)
+        print qurl
+        if opts.verbose > 0:
+            print >>sys.stderr, qurl
+            print >>sys.stderr, q
+
+        if q.strip().startswith("plot"):
+            q = q.strip()[5:]
+            doplot = True
+        elif q.strip().startswith("gp"):
+            add_gnuplot(q.strip()[3:])
+        else:
+            doplot = False
+
+        tic = time.time()
+        total = 0
+        fp = urllib2.urlopen(qurl, data=q, timeout=opts.timeout)
+        obj = client.parser(fp.read())
+
+        if util.is_string(obj):
+            # make newlines come out right -- it's been json'ed
+            print json.loads(obj)
+        elif doplot:
+            plot(obj)
+        else:
+            if opts.dates:
+                stringify_times(obj)
+            json.dump(sorted(obj), sys.stdout, sort_keys=True, indent=2)
+
+#                 json
+#         while True:
+#             obj =  fp.readline()
+#             if not obj: break
+#             obj = json.loads(obj)
+
+#                 print # add a newline
+#             toc = time.time()
+#             print >>sys.stderr, "%i (%i ms)" % (len(obj), int((toc - tic) * 1000))
+#             total += len(obj)
+        toc = time.time()
+        print >>sys.stderr, "%i (%i ms)" % (len(obj), int((toc - tic) * 1000))
+
+    except urllib2.HTTPError, e:
+        print >>sys.stderr, "ERROR:", e.read()
+    except urllib2.URLError, e:
+        print >>sys.stderr, "ERROR:", e
+        raise StopIteration()
+
+gnuplot_args = [["set", "xdata", "time"],
+                ["set", "timefmt", '"%s"'],
+                ["set", "term", "dumb"],
+                ["unset", "key"]]
+def get_gnuplot():
+    return '\n'.join(map(' '.join, gnuplot_args))
+
+def set_gnuplot(cmd):
+    cmd = cmd.trim().split(" ")
+
+def plot(dat):
+    pfile = '/tmp/smap-query.%i.pfile' % os.getpid()
+    pscript = '/tmp/smap-query.%i.pscript' % os.getpid()
+    # write the data file
+    # data = # dvecs = map(operator.itemgetter("Readings"), dat) 
+    data = dat[0]
+    if len(dat) > 1:
+        print "WARNING: can only print pasted data, plotting only the first series"
+
+    def getpoint(d):
+        if len(d) > 0: return d[0]
+        else: 0xffffffff * 1000
+
+    with open(pfile, "w") as fp:
+        for line in data['Readings']:
+            line[0] /= 1000
+            print >>fp, ' '.join(map(str, line))
+        
+    with open(pscript, "w") as fp:
+        print >>fp, get_gnuplot()
+        print >>fp, """
+plot %s
+    """ % ','.join(['"%s" using ($1):%i with linesp' % (pfile, x+2) 
+                    for x in xrange(0, len(data['Readings'][0]))])
+
+    with open('/dev/null', 'w') as null:
+        p = subprocess.Popen("gnuplot %s" % pscript, 
+                             shell=True, stderr=None)
+    rc = p.wait()
+    if rc == 127:
+        print "ERROR: could not find gnuplot in $PATH; is it installed?"
+    
+    os.remove(pfile)
+    os.remove(pscript)
+
+if __name__ == '__main__':
+    usage = 'usage: %prog [options] querys ...'
+    try:
+        default_backend = settings.conf['default backend'] + '/api/query'
+    except:
+        default_backend = 'http://localhost:8079/api/query'
+
+    parser = OptionParser(usage=usage)
+    parser.add_option('-u', '--url', dest='url', 
+                      default=default_backend,
+                      help='location of backend server')
+    parser.add_option('-k', '--key', dest='key', default=None,
+                      help='api keys: k1[,k2 ...]')
+    parser.add_option('-p', '--private', dest='private', default=False,
+                      help='display only results associated with the api key',
+                      action='store_true')
+    parser.add_option('-t', '--timeout', dest='timeout', default=60,
+                      type="int")
+    parser.add_option('-v', dest='verbose', default=0,
+                      help="be verbose", action="count")
+    parser.add_option('-n', '--no-dates', dest='dates',
+                      default=True, action='store_false',
+                      help='don\'t convert dates to string representation')
+    opts, args = parser.parse_args()
+
+    if len(args) > 0:
+        map(lambda x: run_query(opts, x), args)
+    elif not os.isatty(sys.stdin.fileno()):
+        q = sys.stdin.read()
+        run_query(opts, q)
+    else:
+        print >>sys.stderr, "Querying", opts.url
+        readline.parse_and_bind('tab: complete')
+        readline.parse_and_bind('set editing-mode emacs')
+        if hasattr(readline, "read_history_file"):
+            try:
+                readline.read_history_file(HISTFILE)
+            except IOError:
+                pass
+            atexit.register(readline.write_history_file, HISTFILE)
+            
+        blank = re.compile('^[ \t\n\r]*$')
+        quit = re.compile("^\W*(quit|exit)")
+
+        while True:
+            try:
+                s = raw_input('smap > ')   # Use raw_input on Python 2
+                if blank.match(s): continue
+                elif quit.match(s): break
+                run_query(opts, s)
+            except (EOFError, StopIteration):
+                break

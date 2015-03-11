@@ -1,0 +1,9 @@
+setup.py
+applauncher/__init__.py
+applauncher/agent.py
+applauncheragent.egg-info/PKG-INFO
+applauncheragent.egg-info/SOURCES.txt
+applauncheragent.egg-info/dependency_links.txt
+applauncheragent.egg-info/entry_points.txt
+applauncheragent.egg-info/requires.txt
+applauncheragent.egg-info/top_level.txt

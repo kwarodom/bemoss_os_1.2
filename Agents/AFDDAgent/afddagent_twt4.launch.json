@@ -1,0 +1,88 @@
+{
+    "agent": {
+        "exec": "afddagent-0.1-py2.7.egg --config \"%c\" --sub \"%s\" --pub \"%p\""
+    },
+     "agentid": "pnnl_twt4",
+     "message": "PNNL_AFDD starts...",
+	 "campus": "pnnl",
+	 "building": "twt",
+	 "unit": "catalyst4",
+	 "smap_path": "datalogger/log/AFDD Messages/twt/catalyst4" ,  #/datalogger/log/your path here
+	 "day_run_interval": 1,  
+	 "start_hour": 17,
+	 "start_minute": 0,
+	 
+	 #Controller point names
+	 "volttron_flag": "VoltronFlag",
+	 "oat_point_name": "OutsideAirTemperature",
+	 "mat_point_name": "MixedAirAverage", #"DischargeAirTemperature"
+	 "dat_point_name": "DischargeAirTemperature",
+	 "rat_point_name": "ReturnAirTemperature",
+	 "oat_virtual_point_name": "ReturnAirCO2Stpt",
+	 "damper_point_name": "DamperSignal",
+	 "damper_command_name": "DamperCommand",
+	 "cool_call1_point_name": "CoolCall1",
+	 "cool_call2_point_name": "CoolCall2",
+	 "cool_cmd1_point_name": "CoolCommand1",
+	 "cool_cmd2_point_name": "CoolCommand2",
+	 "fan_status_point_name": "FanStatus",
+	 "heat_command1_point_name": "HeatCommand1",
+	 "heat_command2_point_name": "HeatCommand2",
+	 "oat_bias": "OutsideAirTemperatureBias",
+	 "fan_command_name": "SupplyFanSpeed",
+	 
+	 "file_name": "./AFDDtest.log",
+	 "mixed_air_sensor_missing": 1, #set to '0' if MAT sensor is present,  set to '1' if MAT sensor is missing
+	 "economizertype": 1, # '1' for catalyst override to standard mode (high limit 55F), '0' is ddb economizer ESMMode (high limit 70F)
+	 "high_limit": 55.0, #for ESMMode on controller the high limit is lowest temperature for differential dry bulb economizer control
+	
+	 #Global thresholds
+	 "min_oa_temperature": 30,
+	 "max_oa_temperature": 100,
+	 "min_ra_temperature": 50,
+	 "max_ra_temperature": 100,
+	 "min_ma_temperature": 50,
+	 "max_ma_temperature": 100,
+	
+	 "minutes_to_average": 5, #5
+	 "seconds_to_steady_state": 360,
+	 "cfm": 5000 , #supply fan rated cfm
+	 "EER": 10, #site specific
+  
+	 #AFDD0 DAT and MAT consistency check
+     "afdd0_mat_dat_consistency _threshold": 5, #degrees F
+    
+	 #AFDD1 Outdoor-air damper modulation diagnostic
+	 "afdd1_econ_temp_differential": 4, #degrees F
+     "afdd1_damper_modulation_threshold": 3, #degree F
+    
+     #AFDD2 Temperature sensor diagnostic
+     #"afdd2_tempsensorfault_threshold": 4,
+     "afdd2_oat_mat_consistency_threshold": 4, #degrees F
+     "afdd2_rat_mat_consistency_threshold": 4, #degrees F
+    
+     #AFDD3 RTU is not economizing when it should
+     "afdd3_oaf_threshold": 0.3,
+     "afdd3_econ_temp_differential": 1,
+     "afdd3_oat_rat_temperature_difference_threshold": 2,
+     "afdd3_open_damper_threshold": 5,
+   
+    
+     #AFDD4 RTU is economizing when it should not
+     "afdd4_econ_temp_differential": 1,
+     "afdd4_minimum_damper_command": 20, #site specific
+    
+     #AFDD5 Excess outdoor-air ventilation diagnostic
+     "afdd5_oat_rat_temperature_difference_threshold": 4,
+     "afdd5_econ_temp_differential": 1, #degrees F
+     "afdd5_oaf_threshold": 0.25,
+     "afdd5_minimum_damper_command": 20, #site specific 
+     "afdd5_minimum_oa": 0.05, #minimum outdoor air fraction (used in AFDD5 and AFDD6)
+    
+     #AFDD6 Insufficient outdoor-air ventilation
+     "afdd6_oat_rat_temperature_difference_threshold": 4,
+     "afdd6_oaf_threshold": 0,
+     "afdd6_min_oa": 0.05,
+  	 "afdd6_minimum_damper_command": 20, #site specific (same as damper minimum for AFDD5)
+  	 "afdd6_econ_temp_differential": 1
+}

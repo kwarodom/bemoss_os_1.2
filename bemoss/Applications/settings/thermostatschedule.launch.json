@@ -1,0 +1,441 @@
+{"thermostat": {
+        "Wifithermostat1": {
+            "active": [
+                "weekdayweekend"
+            ],
+            "inactive": [
+                "everyday","holiday"
+            ],
+            "schedulers": {
+                "everyday": {
+                    "friday": {
+                        "cool": [],
+                        "heat": []
+                    },
+                    "monday": {
+                        "cool": [
+                            {
+                                "at": "30",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "78"
+                            },
+                            {
+                                "at": "210",
+                                "id": 2,
+                                "nickname": "Period2",
+                                "setpoint": "75"
+                            },
+                            {
+                                "at": "240",
+                                "id": 3,
+                                "nickname": "Period3",
+                                "setpoint": "78"
+                            },
+                            {
+                                "at": "0",
+                                "id": 4,
+                                "nickname": "Period4",
+                                "setpoint": "76"
+                            },
+                            {
+                                "at": "60",
+                                "id": 5,
+                                "nickname": "Period5",
+                                "setpoint": "73"
+                            },
+                            {
+                                "at": "90",
+                                "id": 6,
+                                "nickname": "Period6",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "120",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "77"
+                            },
+                            {
+                                "at": "1202",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "79"
+                            },
+                            {
+                                "at": "1204",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "70"
+                            },
+                            {
+                                "at": "1206",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "1208",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "74"
+                            },
+                            {
+                                "at": "1210",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "76"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "at": "1212",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "78"
+                            },
+                            {
+                                "at": "1214",
+                                "id": 2,
+                                "nickname": "Period2",
+                                "setpoint": "80"
+                            },
+                            {
+                                "at": "1216",
+                                "id": 3,
+                                "nickname": "Period3",
+                                "setpoint": "82"
+                            },
+                            {
+                                "at": "1218",
+                                "id": 4,
+                                "nickname": "Period4",
+                                "setpoint": "70"
+                            },
+                            {
+                                "at": "1220",
+                                "id": 5,
+                                "nickname": "Period5",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "1222",
+                                "id": 13,
+                                "nickname": "Period13",
+                                "setpoint": "73"
+                            },
+                            {
+                                "at": "1222",
+                                "id": 13,
+                                "nickname": "Period13",
+                                "setpoint": "75"
+                            },
+                            {
+                                "at": "1224",
+                                "id": 13,
+                                "nickname": "Period13",
+                                "setpoint": "79"
+                            }
+                        ]
+                    },
+                    "saturday": {
+                        "cool": [],
+                        "heat": []
+                    },
+                    "sunday": {
+                        "cool": [],
+                        "heat": []
+                    },
+                    "thursday": {
+                        "cool": [],
+                        "heat": []
+                    },
+                    "tuesday": {
+                        "cool": [
+                            {
+                                "at": "1132",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "70"
+                            },
+                            {
+                                "at": "1134",
+                                "id": 2,
+                                "nickname": "Lunch",
+                                "setpoint": "72"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "at": "1136",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "74"
+                            },
+                            {
+                                "at": "1110",
+                                "id": 2,
+                                "nickname": "Lunch",
+                                "setpoint": "70"
+                            },
+                            {
+                                "at": "1138",
+                                "id": 2,
+                                "nickname": "Lunch",
+                                "setpoint": "76"
+                            },
+                            {
+                                "at": "1130",
+                                "id": 2,
+                                "nickname": "Lunch",
+                                "setpoint": "76"
+                            }
+                        ]
+                    },
+                    "wednesday": {
+                        "cool": [
+                            {
+                                "at": "390",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "76"
+                            },
+                            {
+                                "at": "510",
+                                "id": 2,
+                                "nickname": "Period2",
+                                "setpoint": "74"
+                            },
+                            {
+                                "at": "162",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "78"
+                            },
+                            {
+                                "at": "164",
+                                "id": 2,
+                                "nickname": "Period2",
+                                "setpoint": "75"
+                            },
+                            {
+                                "at": "166",
+                                "id": 3,
+                                "nickname": "Period3",
+                                "setpoint": "78"
+                            },
+                            {
+                                "at": "168",
+                                "id": 4,
+                                "nickname": "Period4",
+                                "setpoint": "76"
+                            },
+                            {
+                                "at": "170",
+                                "id": 5,
+                                "nickname": "Period5",
+                                "setpoint": "73"
+                            },
+                            {
+                                "at": "172",
+                                "id": 6,
+                                "nickname": "Period6",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "174",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "77"
+                            },
+                            {
+                                "at": "176",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "79"
+                            },
+                            {
+                                "at": "180",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "70"
+                            },
+                            {
+                                "at": "182",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "184",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "74"
+                            },
+                            {
+                                "at": "186",
+                                "id": 7,
+                                "nickname": "Period7",
+                                "setpoint": "76"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "at": "190",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "192",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "74"
+                            },
+                            {
+                                "at": "194",
+                                "id": 2,
+                                "nickname": "Lunch",
+                                "setpoint": "70"
+                            },
+                            {
+                                "at": "196",
+                                "id": 2,
+                                "nickname": "Lunch",
+                                "setpoint": "76"
+                            },
+                            {
+                                "at": "198",
+                                "id": 2,
+                                "nickname": "Lunch",
+                                "setpoint": "76"
+                            }
+                        ]
+                    }
+                },
+                "holiday": {
+                    "cool": [
+                        {
+                            "at": "630",
+                            "id": 1,
+                            "nickname": "Breakfastt",
+                            "setpoint": "70"
+                        },
+                        {
+                            "at": "90",
+                            "id": 2,
+                            "nickname": "Period2",
+                            "setpoint": "70"
+                        },
+                        {
+                            "at": "270",
+                            "id": 3,
+                            "nickname": "Period3",
+                            "setpoint": "70"
+                        },
+                        {
+                            "at": "0",
+                            "id": 4,
+                            "nickname": "Period4",
+                            "setpoint": "70"
+                        }
+                    ],
+                    "heat": [
+                        {
+                            "at": "90",
+                            "id": 1,
+                            "nickname": "Period1",
+                            "setpoint": "70"
+                        },
+                        {
+                            "at": "150",
+                            "id": 2,
+                            "nickname": "Period2",
+                            "setpoint": "70"
+                        },
+                        {
+                            "at": "60",
+                            "id": 3,
+                            "nickname": "Period3",
+                            "setpoint": "70"
+                        },
+                        {
+                            "at": "480",
+                            "id": 4,
+                            "nickname": "Period4",
+                            "setpoint": "70"
+                        }
+                    ]
+                },
+                "weekdayweekend": {
+                    "weekday": {
+                        "cool": [
+                            {
+                                "at": "1121",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "70"
+                            },
+                            {
+                                "at": "1125",
+                                "id": 2,
+                                "nickname": "New",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "1130",
+                                "id": 3,
+                                "nickname": "Period3",
+                                "setpoint": "73"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "at": "1200",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "78"
+                            },
+                            {
+                                "at": "1329",
+                                "id": 2,
+                                "nickname": "Period2",
+                                "setpoint": "72"
+                            },
+                            {
+                                "at": "950",
+                                "id": 3,
+                                "nickname": "Period3",
+                                "setpoint": "77"
+                            }
+                        ]
+                    },
+                    "weekend": {
+                        "cool": [
+                            {
+                                "at": "870",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "71"
+                            },
+                            {
+                                "at": "1110",
+                                "id": 2,
+                                "nickname": "Period2",
+                                "setpoint": "73"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "at": "600",
+                                "id": 1,
+                                "nickname": "Period1",
+                                "setpoint": "77"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

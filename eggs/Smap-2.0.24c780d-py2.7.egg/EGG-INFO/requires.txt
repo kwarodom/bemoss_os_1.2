@@ -1,0 +1,4 @@
+twisted
+configobj
+avro
+python-dateutil

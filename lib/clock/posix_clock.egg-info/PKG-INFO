@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: posix-clock
+Version: 1.0
+Summary: Provide access to POSIX clock_gettime() and other functions
+Home-page: http://www.pnnl.gov
+Author: Brandon Carpenter
+Author-email: brandon.carpenter@pnnl.gov
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN

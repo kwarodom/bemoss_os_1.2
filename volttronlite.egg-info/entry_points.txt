@@ -1,0 +1,33 @@
+
+    [console_scripts]
+    volttron-lite = volttron.lite.main:_main
+    volttron-ctrl = volttron.lite.control:_main
+
+    #[volttron.lite.control.handlers]
+    #run_agent = volttron.lite.commands:run_agent.handler
+    #shutdown = volttron.lite.commands:shutdown.handler
+
+    #[volttron.lite.control.commands]
+    #run-agent = volttron.lite.commands:run_agent.command
+    #shutdown = volttron.lite.commands:shutdown.command
+    
+    # Other useful commands that need implemented
+    #load-agent
+    #list-agents
+    #run-agent
+    #unload-agent
+    #debug-shell
+
+    [volttron.switchboard.directory]
+    #lite = volttron.core.directory.host:HostDirectory
+
+    [volttron.switchboard.resmon]
+    lite = volttron.lite.resmon:ResourceMonitor
+    
+    [volttron.switchboard.aip]
+    lite = volttron.lite.aip:AIPLite
+
+
+    [volttron.switchboard.auth]
+    #lite = volttron.lite.auth:AuthManager
+    
